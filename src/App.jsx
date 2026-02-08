@@ -1,11 +1,11 @@
 //imports
-import Navbar from "./components/Navbar"
+import NavbarContainer from "./components/NavbarContainer"
 import ItemListContainer from "./components/ItemListContainer"
 
 function App() {
   return (
     <div>
-      <Navbar />
+      <NavbarContainer />
       <ItemListContainer greeting="Bienvenido a Fiona Store" />
     </div>
   )
