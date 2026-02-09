@@ -1,4 +1,4 @@
-import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { collection, getDocs, query, where, doc, getDoc } from "firebase/firestore";
 import { db } from "./config";
 
 export const getProducts = async () => {
@@ -18,3 +18,14 @@ export const getProductById = async (id) => {
     return null;
   }
 };
+
+export const getProductsByCategory = async (category) => {
+  const productsCollection = collection(db, "Items");
+  const q = query(productsCollection, where("category", "==", category));
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data()
+  }));
+};
+
