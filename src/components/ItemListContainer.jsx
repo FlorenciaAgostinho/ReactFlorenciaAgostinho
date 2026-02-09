@@ -1,17 +1,19 @@
-import { useState, useEffect } from "react"
-import ItemList from "./ItemList"
+import { useState, useEffect } from "react";
+import ItemList from "./ItemList";
+import { getProducts } from "../firebase/db";
 
 function ItemListContainer() {
-  const [items, setItems] = useState([])
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch("https://dummyjson.com/products")
-      .then(res => res.json())
-      .then(data => setItems(data.products))
-  }, [])
+    const fetchData = async () => {
+      const products = await getProducts();
+      setItems(products);
+    };
+    fetchData();
+  }, []);
 
-  return <ItemList items={items} />
+  return <ItemList items={items} />;
 }
 
-export default ItemListContainer
-
+export default ItemListContainer;

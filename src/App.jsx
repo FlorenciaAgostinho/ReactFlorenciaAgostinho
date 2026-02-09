@@ -1,14 +1,18 @@
-//imports
-import NavbarContainer from "./components/NavbarContainer"
-import ItemListContainer from "./components/ItemListContainer"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NavbarContainer from "./components/NavbarContainer";
+import ItemListContainer from "./components/ItemListContainer";
+import ItemDetailContainer from "./components/ItemDetailContainer";
 
 function App() {
   return (
-    <div>
-      <NavbarContainer />
-      <ItemListContainer greeting="Bienvenido a Fiona Store" />
-    </div>
-  )
+    <BrowserRouter>
+      <NavbarContainer /> {}
+      <Routes>
+        <Route path="/" element={<ItemListContainer />} />
+        <Route path="/item/:id" element={<ItemDetailContainer />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

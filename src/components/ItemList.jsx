@@ -1,4 +1,4 @@
-import Item from "./Item"
+import Item from "./Item";
 
 function ItemList({ items }) {
   return (
@@ -7,7 +7,7 @@ function ItemList({ items }) {
         <Item key={prod.id} prod={prod} />
       ))}
     </div>
-  )
+  );
 }
 
-export default ItemList
+export default ItemList;
