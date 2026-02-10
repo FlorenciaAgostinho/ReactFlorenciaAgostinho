@@ -1,16 +1,30 @@
-# React + Vite
+# ProyectoFinalAgostinho – Fiona Store 🛒
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🛒 Descripción
 
-Currently, two official plugins are available:
+**Fiona Store** es una aplicación de e‑commerce desarrollada como proyecto final del curso de React JS en Coderhouse.  
+La app permite navegar un catálogo de productos, agregarlos al carrito, completar un checkout y registrar órdenes en **Firebase Firestore**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ⚙️ Tecnologías utilizadas
 
-## React Compiler
+- **React 19** – Librería principal para la UI  
+- **Vite 7** – Bundler y servidor de desarrollo  
+- **Firebase 12** – Base de datos en la nube (Firestore)  
+- **React Router 7** – Navegación entre vistas  
+- **React Toastify 11** – Notificaciones de éxito y error  
+- **TailwindCSS 3** – Estilos utilitarios  
+- **DaisyUI 5** – Componentes estilizados sobre Tailwind  
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Funcionalidades principales
 
-## Expanding the ESLint configuration
+- Catálogo de productos cargados desde Firestore  
+- Carrito de compras con **Context API** (agregar, eliminar, vaciar, calcular total)  
+- Checkout con formulario de cliente (nombre, email, teléfono, dirección)  
+- Generación de órdenes en Firestore con ID único  
+- Notificaciones con Toastify  
+- Estilado con TailwindCSS + DaisyUI  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📎 Repositorio
+
+Podés ver el código completo en GitHub:  
+[Repositorio en GitHub](https://github.com/FlorenciaAgostinho/ReactFlorenciaAgostinho

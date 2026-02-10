@@ -7,12 +7,18 @@ import { toast } from "react-toastify";
 
 function CartContainer() {
   const { cart, removeFromCart, clearCart } = useContext(CartContext);
-  const [client, setClient] = useState({ name: "", email: "", phone: "" });
+  const [client, setClient] = useState({
+    name: "Cliente Demo",
+    email: "demo@email.com",
+    phone: "123456789",
+    address: "Calle Falsa 123",
+  });
+  const [orderId, setOrderId] = useState(null);
 
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   const handleCheckout = async () => {
-    if (!client.name || !client.email || !client.phone) {
+    if (!client.name || !client.email || !client.phone || !client.address) {
       toast.error("Por favor completa todos los datos del cliente");
       return;
     }
@@ -26,6 +32,7 @@ function CartContainer() {
 
     try {
       const docRef = await addDoc(collection(db, "Orders"), order);
+      setOrderId(docRef.id);
       toast.success(`Compra realizada con ID: ${docRef.id}`);
       clearCart();
     } catch (error) {
@@ -34,7 +41,7 @@ function CartContainer() {
     }
   };
 
-  if (cart.length === 0) {
+  if (cart.length === 0 && !orderId) {
     return <p className="p-5 text-purple-700">El carrito está vacío</p>;
   }
 
@@ -53,7 +60,6 @@ function CartContainer() {
         />
       ))}
 
-      {/* Mostrar el total */}
       <h3 className="text-xl font-semibold mt-6 text-purple-700">
         Total: ${total}
       </h3>
@@ -63,19 +69,33 @@ function CartContainer() {
         type="text"
         placeholder="Nombre"
         className="border p-2 w-full mt-2"
+        value={client.name}
+        required
         onChange={e => setClient({ ...client, name: e.target.value })}
       />
       <input
         type="email"
         placeholder="Email"
         className="border p-2 w-full mt-2"
+        value={client.email}
+        required
         onChange={e => setClient({ ...client, email: e.target.value })}
       />
       <input
         type="tel"
         placeholder="Teléfono"
         className="border p-2 w-full mt-2"
+        value={client.phone}
+        required
         onChange={e => setClient({ ...client, phone: e.target.value })}
+      />
+      <input
+        type="text"
+        placeholder="Dirección"
+        className="border p-2 w-full mt-2"
+        value={client.address}
+        required
+        onChange={e => setClient({ ...client, address: e.target.value })}
       />
 
       <button
@@ -84,6 +104,12 @@ function CartContainer() {
       >
         Finalizar compra
       </button>
+
+      {orderId && (
+        <p className="mt-4 text-green-600">
+          Tu compra fue registrada con ID: {orderId}
+        </p>
+      )}
     </div>
   );
 }

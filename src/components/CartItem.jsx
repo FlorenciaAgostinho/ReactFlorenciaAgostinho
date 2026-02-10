@@ -1,9 +1,9 @@
-function CartItem({ id, name, quantity, price, img, removeItem }) {
+function CartItem({ id, title, quantity, price, img, removeItem }) {
   return (
     <div className="cart-item flex items-center gap-4 p-2 border-b">
-      <img src={img} alt={name} className="w-16 h-16 object-cover rounded" />
+      <img src={img} alt={title} className="w-16 h-16 object-cover rounded" />
       <div className="flex-1">
-        <h3 className="font-semibold">{name}</h3>
+        <h3 className="font-semibold">{title}</h3>
         <p>Cantidad: {quantity}</p>
         <p>Precio: ${price}</p>
       </div>
@@ -17,4 +17,4 @@ function CartItem({ id, name, quantity, price, img, removeItem }) {
   );
 }
 
-export default CartItem;
+export default CartItem
