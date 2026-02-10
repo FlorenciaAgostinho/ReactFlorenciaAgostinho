@@ -1,37 +1,29 @@
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
 
 function Item({ prod }) {
-  console.log(prod);
+  const { addToCart } = useContext(CartContext);
 
   return (
-    <div className="bg-purple-100 shadow-md rounded-lg p-4 flex flex-col items-center hover:scale-105 transition-transform">
+    <div className="p-4 bg-white rounded shadow">
+      <img src={prod.thumbnail} alt={prod.title} className="w-40 h-40 object-cover mx-auto" />
+      <h3 className="text-lg font-bold mt-2">{prod.title}</h3>
+      <p>${prod.price}</p>
 
-      <figure className="w-40 h-40 overflow-hidden rounded-md">
-        <img
-          src={prod.thumbnail}
-          alt={prod.title}
-          className="w-full h-full object-cover"
-        />
-      </figure>
-
-
-      <h2 className="text-lg font-semibold mt-3 text-purple-800">
-        {prod.title}
-      </h2>
-
-
-      <p className="text-purple-600 mt-1 font-medium">${prod.price}</p>
-
-
-      <Link
-        to={`/item/${prod.id}`}
-        className="mt-3 bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
-      >
-        Ver más
-      </Link>
+      <div className="flex gap-2 mt-2">
+        <Link to={`/item/${prod.id}`} className="bg-purple-400 px-3 py-1 rounded text-white">
+          Ver más
+        </Link>
+        <button
+          onClick={() => addToCart(prod, 1)}
+          className="bg-purple-500 px-3 py-1 rounded text-white"
+        >
+          + 🛒
+        </button>
+      </div>
     </div>
   );
 }
 
 export default Item;
-
