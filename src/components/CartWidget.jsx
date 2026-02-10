@@ -3,12 +3,11 @@ import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
 
 function CartWidget({ styles }) {
-  const { cart } = useContext(CartContext);
-  const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const { getTotalItems } = useContext(CartContext);
 
   return (
     <Link to="/cart" className={styles}>
-      🛒 {totalItems}
+      🛒 {getTotalItems()}
     </Link>
   );
 }

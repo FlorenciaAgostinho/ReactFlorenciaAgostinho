@@ -1,43 +1,42 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Loader from "./Loader";
 import ItemList from "./ItemList";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase/config";
+import { useParams } from "react-router-dom";
 
 function ItemListContainer() {
-  const [items, setItems] = useState([]);
-  const { categoryId } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+  const { categoryId } = useParams(); 
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const productsCollection = collection(db, "Items");
-        const q = categoryId
-          ? query(productsCollection, where("category", "==", categoryId))
-          : productsCollection;
+    const productsCollection = collection(db, "Items"); 
 
-        const snapshot = await getDocs(q);
-        const products = snapshot.docs.map(doc => ({
+    
+    const q = categoryId
+      ? query(productsCollection, where("category", "==", categoryId))
+      : productsCollection;
+
+    getDocs(q)
+      .then(snapshot => {
+        const items = snapshot.docs.map(doc => ({
           id: doc.id,
-          ...doc.data()
+          ...doc.data(),
         }));
+        setProducts(items);
+        console.log("Productos cargados:", items); 
+      })
+      .catch(error => {
+        console.error("Error al traer productos:", error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [categoryId]); 
+  if (loading) return <Loader />;
 
-        console.log("Productos cargados:", products);
-        setItems(products);
-      } catch (error) {
-        console.error("Error cargando productos:", error);
-      }
-    };
-
-    fetchData();
-  }, [categoryId]);
-
-  return items.length > 0 ? (
-    <ItemList items={items} />
-  ) : (
-    <p className="p-5 text-purple-700">No hay productos en esta categoría</p>
-  );
+  return <ItemList products={products} />;
 }
 
 export default ItemListContainer;
-

@@ -20,7 +20,7 @@ export const getProductById = async (id) => {
 };
 
 export const getProductsByCategory = async (category) => {
-  const productsCollection = collection(db, "Items");
+  const productsCollection = collection(db, "Items"); 
   const q = query(productsCollection, where("category", "==", category));
   const snapshot = await getDocs(q);
   return snapshot.docs.map(doc => ({
@@ -28,4 +28,3 @@ export const getProductsByCategory = async (category) => {
     ...doc.data()
   }));
 };
-

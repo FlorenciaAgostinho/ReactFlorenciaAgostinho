@@ -27,4 +27,4 @@ La app permite navegar un catálogo de productos, agregarlos al carrito, complet
 ## 📎 Repositorio
 
 Podés ver el código completo en GitHub:  
-[Repositorio en GitHub](https://github.com/FlorenciaAgostinho/ReactFlorenciaAgostinho
+[Repositorio en GitHub](https://github.com/FlorenciaAgostinho/ReactFlorenciaAgostinho)
