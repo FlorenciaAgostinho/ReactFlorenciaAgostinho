@@ -33,7 +33,7 @@ function CartContainer() {
     try {
       const docRef = await addDoc(collection(db, "Orders"), order);
       setOrderId(docRef.id);
-      toast.success(`Compra realizada con ID: ${docRef.id}`);
+      toast.success(`Compra realizada con exito ID: ${docRef.id}`);
       clearCart();
     } catch (error) {
       toast.error("Error al generar la orden");
@@ -42,8 +42,26 @@ function CartContainer() {
   };
 
   if (cart.length === 0 && !orderId) {
-    return <p className="p-5 text-purple-700">El carrito está vacío</p>;
-  }
+  return (
+    <div className="card bg-base-100 shadow-md p-5 items-center">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-12 w-12 text-purple-500 mb-2"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.3h12.9M16 21a1 1 0 100-2 1 1 0 000 2zm-8 0a1 1 0 100-2 1 1 0 000 2z"
+        />
+      </svg>
+      <p className="text-purple-700 font-semibold">Tu carrito está vacío 😢</p>
+    </div>
+  );
+}
 
   return (
     <div className="p-5">
@@ -107,7 +125,7 @@ function CartContainer() {
 
       {orderId && (
         <p className="mt-4 text-green-600">
-          Tu compra fue registrada con ID: {orderId}
+          Gracias por tu compra! Su numero de ID es: {orderId}
         </p>
       )}
     </div>
