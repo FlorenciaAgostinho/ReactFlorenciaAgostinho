@@ -8,16 +8,22 @@ function Navbar({ categories }) {
         Fiona Store
       </Link>
       <details className="dropdown">
-        <summary className="btn m-1">Categorías</summary>
-        <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+       <summary className="btn m-1 text-lg font-bold list-none">Categorías</summary>
+        <ul className="menu dropdown-content bg-white text-black rounded-box z-10 w-52 p-2 shadow-lg">
           {categories.map((cat, index) => (
             <li key={index}>
-              <Link to={`/category/${cat}`}>{cat}</Link>
+              <Link
+                to={`/category/${cat}`}
+                className="hover:text-purple-500"
+              >
+                {cat}
+              </Link>
             </li>
           ))}
         </ul>
       </details>
-      <CartWidget styles="bg-purple-400 text-black px-7 rounded" />
+     <CartWidget styles="bg-purple-400 text-black px-10 py-3 rounded-lg text-xl" />
+
     </header>
   );
 }

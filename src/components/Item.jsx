@@ -15,7 +15,11 @@ function Item({ prod }) {
         className="w-40 h-40 object-cover mx-auto"
       />
       <h3 className="text-lg font-bold mt-2">{prod.title}</h3>
-      <p>${prod.price}</p>
+      <p style={{ color: "#000000", fontWeight: "600" }}>
+        {prod.description}
+      </p>
+      
+      <p className="text-lg mt-2">${prod.price}</p>
       <div className="flex gap-2 mt-2">
         <Link
           to={`/item/${prod.id}`}
