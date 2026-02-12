@@ -24,6 +24,11 @@ La app permite navegar un catálogo de productos, agregarlos al carrito, complet
 - Notificaciones con Toastify  
 - Estilado con TailwindCSS + DaisyUI  
 
+## 🚀 Deploy
+
+Podés probar la aplicación en línea:  
+👉 [Fiona Store – Deploy](https://fionastore.vercel.app/)
+
 ## 📎 Repositorio
 
 Podés ver el código completo en GitHub:  
