@@ -30,16 +30,20 @@ function CartContainer() {
       total,
     };
 
-    try {
-      const docRef = await addDoc(collection(db, "Orders"), order);
-      setOrderId(docRef.id);
-      toast.success(`Compra realizada con exito ID: ${docRef.id}`);
-      clearCart();
-    } catch (error) {
-      toast.error("Error al generar la orden");
-      console.error(error);
-    }
-  };
+   try {
+  const docRef = await addDoc(collection(db, "Orders"), order);
+  setOrderId(docRef.id);
+  toast.success(`Compra realizada con éxito ID: ${docRef.id}`, {
+    toastId: `checkout-${docRef.id}`, // evita duplicados
+  });
+  clearCart();
+} catch (error) {
+  toast.error("Error al generar la orden", {
+    toastId: "checkout-error", // evita duplicados en errores
+  });
+  console.error(error);
+}
+
 
   if (cart.length === 0 && !orderId) {
   return (
